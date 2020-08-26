@@ -1,0 +1,71 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+ <div class="row">
+      <div class="col-lg-12">
+        <h1 class="mt-3">Itens da nota</h1>
+
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered table-striped mb-0">
+
+          <thead>
+            <tr>
+              <th>N. Nota</th>
+              <th>Codigo produto</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for n in note %}
+            <tr>
+              <td>{{ n.note }}</td>
+              <td>{{ n.item }}</td>
+              <td class="valor-calculado">{{ n.cost }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+            <center>
+            <form class="form-inline my-2 my-lg-0" id="p" action="" method="PUT">
+                <input class="form-control mr-sm-2" id="qtdtotal" disabled>
+                <input class="form-control mr-sm-2" id="recebe">
+                <button class="btn btn-dark my-2 my-sm-0" onclick="troco()">Calcular</button>
+            </form>
+
+
+            <form class="form-inline my-2 my-lg-0" action="{% url 'index' %}" method="GET">
+                <input class="form-control mr-sm-2" id="resultado" disabled>
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Finalizar</button>
+            </form>
+            </center>
+      </div>
+      </div>
+ </div>
+<script>
+	const p = document.querySelector("#p");
+
+	p.addEventListener("click",(e)=>{
+	    e.preventDefault();
+	});
+
+	var els = document.getElementsByClassName("valor-calculado");
+	var valorcalculado = 0;
+	[].forEach.call(els, function (el)
+	{
+	  valorcalculado += parseInt(el.innerHTML);
+	});
+
+	document.getElementById("qtdtotal").value = "Valor total: " + valorcalculado + "R$";
+
+	function troco() {
+		var recebe = document.getElementById("recebe").value;
+		var rTroco = 0;
+		var rTroco = parseInt(recebe) - valorcalculado;
+		document.getElementById("resultado").value = "Troco:" + rTroco + "R$";
+	}
+
+</script>
+
+
+{%endblock%}

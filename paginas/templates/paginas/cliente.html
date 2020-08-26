@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+    <form action="{% url 'cliente' %}" method="POST">
+      {% csrf_token %}
+      <h2>Funcionario</h2>
+      <div class="input-group">
+        <label>Nome</label>
+        <input type="text" placeholder="Funcionario" id="name" name="name" required>
+      </div>
+      <div class="input-group">
+        <label>CPF</label>
+        <input type="text" placeholder="Cpf" id="document" name="document" required>
+      </div>
+      <div class="buttons">
+        <a href="#" class="link">Voltar para home</a>
+        <button type="submit">Concluir</button>
+      </div>
+    </form>
+
+{%endblock%}

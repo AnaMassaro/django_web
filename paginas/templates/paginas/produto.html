@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+    <form method="POST" action="{% url 'produto' %}">
+      {% csrf_token %}
+      <h2>Produto</h2>
+      <div class="input-group">
+        <label>Nome</label>
+        <input type="text" placeholder="Nome do produto" id="product" name="product" required>
+      </div>
+      <div class="input-group">
+        <label>Preço</label>
+        <input type="text" placeholder="Digite aqui o preeco" id="cost" name="cost" required>
+      </div>
+      <div class="input-group">
+        <label>Descrição</label>
+        <textarea id="description" name="description" rows="3"> </textarea>
+      </div>
+      <div class="buttons">
+        <a href="#" class="link">Voltar para home</a>
+        <button type="submit">Concluir</button>
+      </div>
+    </form>
+
+{%endblock%}

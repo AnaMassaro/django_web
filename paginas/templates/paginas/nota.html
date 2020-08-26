@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+    <form action="{% url 'nota' %}" method="POST">
+      {% csrf_token %}
+      <h2>Nota</h2>
+      <div class="input-group">
+        <label>Funcionario resposavel</label>
+        <input type="text" id="" name="user" required>
+      </div>
+      <div class="input-group">
+        <label>Total</label>
+        <input type="text" name="total_cost" placeholder="Custo atual R$0.00" disabled>
+      </div>
+       <div class="input-group">
+        <label>Data</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      <div class="buttons">
+        <a href="/" class="link">Voltar para home</a>
+        <button type="submit">Concluir</button>
+      </div>
+    </form>
+
+
+{%endblock%}
