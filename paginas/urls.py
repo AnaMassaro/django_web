@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from paginas.services import vendas
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -10,5 +13,6 @@ urlpatterns = [
     path('rota/', views.rota, name='rota'),
     path('listanota/', views.listanota, name='listanota'),
     path('finalizar/', views.updatenote, name='finalizar'),
-    # path('grafico/', views.lista_note, name='grafico'),
+    # path('vendas/', views.vendas, name='vendas'),
+
 ]

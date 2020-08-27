@@ -32,8 +32,7 @@ def produto(request):
 
     return render(request, 'paginas/produto.html')
 
-note = services.insert_note("19","2020-08-26")
-print(note)
+
 
 def nota(request):
     user = request.POST.get('user')
@@ -55,6 +54,11 @@ def lista_user(request):
     return render(request, 'paginas/nota.html', lista['user'])
 
 
+# def vendas(request):
+    # vendas = services.vendas()
+    # return render(request, 'paginas/index.html')
+
+
 def lista_note(request):
     note = {'note': services.get_note()}
     return render(request, 'paginas/index.html', note['note'])
@@ -63,7 +67,6 @@ def lista_note(request):
 def lista(request):
     lista = {'product': services.get_item()}
     return render(request, 'paginas/listaproduto.html', lista['product'])
-
 
 
 def listanota(request):
@@ -87,6 +90,7 @@ def updatenote(request):
         messages.add_message(request, messages.SUCCESS, 'Venda finalizada ;)!')
         return redirect("index")
     return render(request, 'paginas/listanota.html')
+
 
 def rota(request):
     note = request.session['nota']

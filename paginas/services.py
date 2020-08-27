@@ -1,6 +1,6 @@
 import json
 import requests
-
+from django.http import JsonResponse
 
 def get_item():
     response = requests.get("http://localhost:8000/api/item")
@@ -16,6 +16,12 @@ def get_user():
     return lista
 
 
+def vendas(request):
+    response = requests.get("http://localhost:8000/api/grafico")
+    comments = json.loads(response.content)
+    lista = {'vendas': comments}
+    return JsonResponse(lista, safe=False)
+
 def get_note():
     response = requests.post("http://localhost:8000/api/note")
     comments = json.loads(response.content)
@@ -27,6 +33,8 @@ def insert_cliente(name, document):
     dados = {"name": name, "document": document}
     response = requests.post("http://localhost:8000/api/user", json=dados)
     return response.status_code
+
+
 
 
 def insert_produto(product, description, cost):
@@ -47,6 +55,7 @@ def insert_noteitem(note, item, cost, amount):
     dados = {"note": note, "item": item, "cost": cost, "amount": amount}
     response = requests.post("http://localhost:8000/api/rota", json=dados)
     return response.status_code
+
 
 
 def update_note(id, user, total_cost, date):
